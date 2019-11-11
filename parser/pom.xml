@@ -19,6 +19,7 @@
         <antlr.version>4.7.2</antlr.version>
         <antlr4test-maven-plugin.version>1.11</antlr4test-maven-plugin.version>
         <junit.version>4.12</junit.version>
+        <slf4j.version>2.0.0-alpha1</slf4j.version>
     </properties>
 
     <profiles>
@@ -81,8 +82,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
                 <version>3.1</version>
             </plugin>
@@ -114,7 +115,7 @@
                             <goal>antlr4</goal>
                         </goals>
                         <configuration>
-                            <listener>true</listener>
+                            <listener>false</listener>
                             <visitor>true</visitor>
                         </configuration>
                     </execution>
