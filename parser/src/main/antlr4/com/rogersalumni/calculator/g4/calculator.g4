@@ -1,7 +1,7 @@
 // Simple add/sub/mul/div with MDAS precidence and paren grouping.
 // compbined parser and lexer
 
-grammar calculator;
+grammar Calculator;
 
 // parser (lowercase)
 
