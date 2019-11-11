@@ -3,7 +3,7 @@
 
 grammar calculator;
 
-// parser (lowercase vars)
+// parser (lowercase)
 
 start: expression | <EOF> ;
 
@@ -13,7 +13,7 @@ multExpr: atom ( ('*' | '/') atom)*;
 
 atom: NUMBER | ('(' expression ')');
 
-// lexer (uppercase vars)
+// lexer (capitalized)
 
 NUMBER : ('0' .. '9') + ('.' ('0' .. '9') +)? ;
 
