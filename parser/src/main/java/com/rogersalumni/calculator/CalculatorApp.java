@@ -18,8 +18,9 @@ public class CalculatorApp {
     private static final Logger Log = LogManager.getLogger(CalculatorApp.class);
 
     public static void main(String[] args) {
+        String arg = args.length > 0 ? args[0] : "2 + 3 * (4 - 5)";
+
         CalculatorApp calculator = new CalculatorApp();
-        String arg = "2 + 3 * (4 - 5)";
         Double result = calculator.calculate(arg);
         Log.info(arg + " = " + result);
     }
@@ -30,13 +31,10 @@ public class CalculatorApp {
     }
 
     private Double compile(CharStream input) {
-        CalculatorLexer lexer = new CalculatorLexer(input);
-        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-
-        CalculatorParser parser = new CalculatorParser(tokenStream);
+        CalculatorParser parser = new CalculatorParser(new CommonTokenStream(new CalculatorLexer(input)));
         ParseTree tree = parser.start();
 
         CalculatorVisitorImpl visitor = new CalculatorVisitorImpl();
-        return visitor.start(tree);
+        return visitor.walkAst(tree);
     }
 }

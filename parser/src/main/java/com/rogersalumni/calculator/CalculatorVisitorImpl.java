@@ -16,7 +16,7 @@ public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
     private Stack<String> operandStack;
 
 
-    Double start(ParseTree tree) {
+    Double walkAst(ParseTree tree) {
         visit(tree);
         return extractResult();
     }
