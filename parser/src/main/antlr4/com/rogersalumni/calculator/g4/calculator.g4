@@ -7,13 +7,29 @@ grammar Calculator;
 
 start: expression | <EOF> ;
 
-expression: multExpr ( ('+' | '-') multExpr)* ;
+expression: multExpr ( addOp multExpr)* ;
 
-multExpr: atom ( ('*' | '/') atom)*;
+multExpr: atom ( mulOp atom)*;
 
-atom: NUMBER | ('(' expression ')');
+atom: NUMBER | (LPAR expression RPAR);
+
+addOp: ADD | SUB;
+
+mulOp: MUL | DIV;
 
 // lexer (capitalized)
+
+ADD: '+';
+
+SUB: '-';
+
+MUL: '*';
+
+DIV: '/';
+
+LPAR: '(';
+
+RPAR: ')';
 
 NUMBER : ('0' .. '9') + ('.' ('0' .. '9') +)? ;
 
