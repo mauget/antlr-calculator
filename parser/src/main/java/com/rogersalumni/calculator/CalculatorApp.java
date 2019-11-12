@@ -18,14 +18,14 @@ public class CalculatorApp {
     private static final Logger Log = LogManager.getLogger(CalculatorApp.class);
 
     public static void main(String[] args) {
-        String arg = args.length > 0 ? args[0] : "2 + 3 * (4 - 5)";
+        String arg = args.length > 0 ? args[0] : "2+3*(4-5)";
 
         CalculatorApp calculator = new CalculatorApp();
         Double result = calculator.calculate(arg);
         Log.info(arg + " = " + result);
     }
 
-    private Double calculate(String arithmeticExpression) {
+    public Double calculate(String arithmeticExpression) {
         CodePointCharStream input = CharStreams.fromString(arithmeticExpression);
         return compile(input);
     }

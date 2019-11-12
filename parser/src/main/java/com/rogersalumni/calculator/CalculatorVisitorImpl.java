@@ -6,27 +6,54 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
+import java.util.function.BinaryOperator;
 
 public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
 
     private static final Logger Log = LogManager.getLogger(CalculatorVisitorImpl.class);
 
     private Stack<Double> argStack;
-    private Stack<String> operandStack;
+    private Stack<String> operatorStack;
+    private Map<String, BinaryOperator<Double>> operatorMap;
 
+    CalculatorVisitorImpl() {
+        init();
+    }
 
+    private void init() {
+        createStacks();
+        createOperationMap();
+    }
+
+    private void createStacks(){
+        argStack = new Stack<>();
+        operatorStack = new Stack<>();
+    }
+
+    private void createOperationMap(){
+        operatorMap = new HashMap<>();
+
+        operatorMap.put("+", (x, y) -> x + y);
+        operatorMap.put("-", (x, y) -> x - y);
+        operatorMap.put("*", (x, y) -> x * y);
+        operatorMap.put("/", (x, y) -> x / y);
+    }
+
+    // Walk AST, stacking operations and args accordingly, then reduce stacks to single Double
     Double walkAst(ParseTree tree) {
         visit(tree);
-        return extractResult();
+        return reduce();
     }
 
     @Override
     public Double visitStart(CalculatorParser.StartContext ctx) {
         Log.debug("visitStart " + ctx.getText());
 
-        argStack = new Stack<>();
-        operandStack = new Stack<>();
+        argStack.empty();
+        operatorStack.empty();
 
         return super.visitStart(ctx);
     }
@@ -48,8 +75,8 @@ public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
 
     @Override
     public Double visitAddOp(CalculatorParser.AddOpContext ctx) {
-        operandStack.push(ctx.getText());
-        Log.debug("visitAddOp operandStack after: " + operandStack.toString());
+        operatorStack.push(ctx.getText());
+        Log.debug("visitAddOp operandStack after: " + operatorStack.toString());
 
         return super.visitAddOp(ctx);
     }
@@ -57,36 +84,23 @@ public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
 
     @Override
     public Double visitMulOp(CalculatorParser.MulOpContext ctx) {
-        operandStack.push(ctx.getText());
-        Log.debug("visitMulOp operandStack after: " + operandStack.toString());
+        operatorStack.push(ctx.getText());
+        Log.debug("visitMulOp operandStack after: " + operatorStack.toString());
 
         return super.visitMulOp(ctx);
     }
 
     private void eval() {
         while (argStack.size() > 1) {
-            String operand = operandStack.pop();
+            String operator = operatorStack.pop();
+            // Pop order matters:
             Double arg2 = argStack.pop();
             Double arg1 = argStack.pop();
-
-            switch (operand) {
-                case "+":
-                    argStack.push(arg1 + arg2);
-                    break;
-                case "-":
-                    argStack.push(arg1 - arg2);
-                    break;
-                case "*":
-                    argStack.push(arg1 * arg2);
-                    break;
-                case "/":
-                    argStack.push(arg1 / arg2);
-                    break;
-            }
+            argStack.push(operatorMap.get(operator).apply(arg1, arg2));
         }
     }
 
-    private Double extractResult() {
+    private Double reduce() {
         eval();
         return argStack.pop();
     }
