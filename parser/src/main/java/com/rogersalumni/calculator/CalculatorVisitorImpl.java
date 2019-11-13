@@ -59,7 +59,7 @@ public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
     }
 
     @Override
-    public Double visitAtom(CalculatorParser.AtomContext ctx) {
+    public Double visitFactor(CalculatorParser.FactorContext ctx)  {
         Double result;
 
         if (ctx.getChildCount() == 1) {
@@ -67,7 +67,7 @@ public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
             argStack.push(result);
             Log.debug("visitAtom argStack after push: " + argStack.toString());
         } else {
-            result = super.visitAtom(ctx);
+            result = super.visitFactor(ctx);
         }
         return result;
     }
@@ -90,7 +90,7 @@ public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
         return super.visitMulOp(ctx);
     }
 
-    private void eval() {
+    private void compute() {
         while (argStack.size() > 1) {
             String operator = operatorStack.pop();
             // Pop order matters:
@@ -101,7 +101,7 @@ public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
     }
 
     private Double reduce() {
-        eval();
+        compute();
         return argStack.pop();
     }
 
