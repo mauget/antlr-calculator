@@ -2,8 +2,6 @@ package com.rogersalumni.calculator;
 
 import com.rogersalumni.calculator.g4.CalculatorBaseVisitor;
 import com.rogersalumni.calculator.g4.CalculatorParser;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +9,7 @@ import java.util.function.BinaryOperator;
 
 public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
 
-    private static final Logger Log = LogManager.getLogger(CalculatorVisitorImpl.class);
+//    private static final Logger Log = LogManager.getLogger(CalculatorVisitorImpl.class);
 
     private Map<String, BinaryOperator<Double>> operatorMap;
 
