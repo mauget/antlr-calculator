@@ -18,7 +18,7 @@ public class CalculatorApp {
     private static final Logger Log = LogManager.getLogger(CalculatorApp.class);
 
     public static void main(String[] args) {
-        String arg = args.length > 0 ? args[0] : "2+3*(4-5)";
+        String arg = args.length > 0 ? args[0] : "-1 / 2";
 
         CalculatorApp calculator = new CalculatorApp();
         Double result = calculator.calculate(arg);
@@ -34,7 +34,7 @@ public class CalculatorApp {
         CalculatorParser parser = new CalculatorParser(new CommonTokenStream(new CalculatorLexer(input)));
         ParseTree tree = parser.start();
 
-        CalculatorVisitorImpl visitor = new CalculatorVisitorImpl();
-        return visitor.walkAst(tree);
+        CalculatorVisitorImpl calculatorVisitor = new CalculatorVisitorImpl();
+        return calculatorVisitor.visit(tree);
     }
 }

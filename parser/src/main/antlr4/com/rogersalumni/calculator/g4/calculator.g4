@@ -1,35 +1,24 @@
-// Simple add/sub/mul/div with MDAS precidence and paren grouping.
-// compbined parser and lexer
+// Simple add/sub/mul/div/modulo with JavaScript precidence and paren grouping.
+// Compbined parser and lexer.
 
 grammar Calculator;
 
-// parser (lowercase)
+// parser
 
-start: expression | <EOF> ;
+start: expr | <EOF> ;
 
-expression: multExpr ( addOp multExpr)* ;
+expr  : '-' expr         # UMINUS
+      | expr mulop expr  # MULOPGRP
+      | expr addop expr  # ADDOPGRP
+      | '(' expr ')'     # PARENGRP
+      | NUMBER           # DOUBLE
+      ;
 
-multExpr: atom ( mulOp atom)*;
+addop : '+' | '-' ;
 
-atom: NUMBER | (LPAR expression RPAR);
+mulop : '*' | '/' | '%' ;
 
-addOp: ADD | SUB;
-
-mulOp: MUL | DIV;
-
-// lexer (capitalized)
-
-ADD: '+';
-
-SUB: '-';
-
-MUL: '*';
-
-DIV: '/';
-
-LPAR: '(';
-
-RPAR: ')';
+// lexer
 
 NUMBER : ('0' .. '9') + ('.' ('0' .. '9') +)? ;
 
