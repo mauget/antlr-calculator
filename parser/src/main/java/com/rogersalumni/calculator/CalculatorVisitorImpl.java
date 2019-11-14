@@ -9,8 +9,6 @@ import java.util.function.BinaryOperator;
 
 public class CalculatorVisitorImpl extends CalculatorBaseVisitor<Double> {
 
-//    private static final Logger Log = LogManager.getLogger(CalculatorVisitorImpl.class);
-
     private Map<String, BinaryOperator<Double>> operatorMap;
 
     CalculatorVisitorImpl() {
