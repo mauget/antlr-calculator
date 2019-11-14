@@ -19,5 +19,7 @@ public class CalculatorAppTest {
         assertEquals("1.0", String.valueOf(app.calculate("(5-4)*(12-11)/((((5-4)*(12-11))))")));
         assertEquals("1.0", String.valueOf(app.calculate("11%(2*5)")));
         assertEquals("0.0", String.valueOf(app.calculate("1000-500*2")));
+        assertEquals("-100.0", String.valueOf(app.calculate("((((((-99))))))-1")));
+        assertEquals("-5.0", String.valueOf(app.calculate("1 + 2 *    -3")));
     }
 }
