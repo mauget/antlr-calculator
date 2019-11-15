@@ -13,14 +13,14 @@ import org.apache.logging.log4j.Logger;
 /**
  * Drive calculator with demo input.
  */
-public class CalculatorAppImplentaton implements CalculatorApp {
+public class CalculatorAppImpl implements CalculatorApp {
 
-    private static final Logger Log = LogManager.getLogger(CalculatorAppImplentaton.class);
+    private static final Logger Log = LogManager.getLogger(CalculatorAppImpl.class);
 
     public static void main(String[] args) {
         String arg = args.length > 0 ? args[0] : "-1 / 2";
 
-        CalculatorAppImplentaton calculator = new CalculatorAppImplentaton();
+        CalculatorAppImpl calculator = new CalculatorAppImpl();
         Double result = calculator.calculate(arg);
         Log.info(arg + " = " + result);
     }
