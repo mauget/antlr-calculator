@@ -1,6 +1,6 @@
 package com.rogersalumni.caclulator;
 
-import com.rogersalumni.calculator.CalculatorApp;
+import com.rogersalumni.calculator.CalculatorAppImplentaton;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,10 +8,10 @@ import static org.junit.Assert.assertEquals;
 /**
  * Unit test for Calculator parser.
  */
-public class CalculatorAppTest {
+public class CalculatorAppImplentatonTest {
     @Test
     public void testCalculate() {
-        CalculatorApp app = new CalculatorApp();
+        CalculatorAppImplentaton app = new CalculatorAppImplentaton();
         assertEquals("20.0", String.valueOf(app.calculate("-2+2*10+2")));
         assertEquals("-12.0", String.valueOf(app.calculate("2+4+-4+-2*10%9*7")));
         assertEquals("-0.5", String.valueOf(app.calculate("1/-2")));

@@ -5,7 +5,9 @@
 
     <groupId>com.rogersalumni.caclulator</groupId>
     <artifactId>parser</artifactId>
+
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>parser</name>
     <url>https://github.com/mauget/calculator</url>
