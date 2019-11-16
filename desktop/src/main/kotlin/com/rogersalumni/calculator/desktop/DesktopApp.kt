@@ -59,7 +59,7 @@ class DesktopView : View() {
             }
             button("6") {
             }
-            button("\u2212") {// +
+            button("\u2212") {// -
             }
         }
         hbox {

@@ -25,11 +25,11 @@ class Styles : Stylesheet() {
         }
 
         textField {
-            fontSize = 40.px
+            fontSize = 20.px
             padding = box(6.px)
             spacing = 10.px
-            minWidth = 8.em
-            maxWidth = 8.em
+            minWidth = 16.em
+            maxWidth = 16.em
         }
     }
 }
