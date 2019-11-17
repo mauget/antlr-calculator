@@ -4,32 +4,48 @@ import tornadofx.*
 
 class Styles : Stylesheet() {
     companion object {
-        // Define styles
+        // Globql styles
         val wrapper by cssclass()
+        var defaultBorderWidth = box(2.px)
 
-        // Define colors
-//        val dangerColor = c("#a94442")
-//        val hoverColor = c("#d49942")
+        // Colors
+        var defaultBgColor = c("#999999")
+        val numberBgColor = c("#606060")
+        val operationBgColor = c("#D2691E")
+        val operationBgDarkColor = c("#444444")
+        val fontColor = c("#dddddd")
+        var defaultBorderColor = box(c("#999999"))
     }
 
     init {
         wrapper {
-            padding = box(6.px)
+            backgroundColor += defaultBgColor
+            borderWidth += defaultBorderWidth
+            borderColor += defaultBorderColor
         }
 
         button {
             fontSize = 40.px
             padding = box(5.px, 10.px)
-            minWidth = 2.em
+            minWidth = 84.px
+            maxWidth = 80.px
+            minHeight = 70.px
+            backgroundColor += numberBgColor
+            textFill = fontColor
+            borderWidth += defaultBorderWidth
+            borderColor += defaultBorderColor
 
         }
 
         textField {
             fontSize = 20.px
             padding = box(6.px)
-            spacing = 10.px
-            minWidth = 16.em
-            maxWidth = 16.em
+            minWidth = 336.px
+            maxWidth = 336.px
+            borderWidth += defaultBorderWidth
+            borderColor += defaultBorderColor
         }
+
+
     }
 }

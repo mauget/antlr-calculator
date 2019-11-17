@@ -9,37 +9,37 @@ class DesktopView : View() {
     private val controller: DesktopController by inject()
     private val input = SimpleStringProperty()
 
-//    override val root = form {
-//        fieldset {
-//            field("Arithmetic expression") {
-//                textfield(input)
-//            }
-//
-//            button("Evaluate") {
-//                action {
-//                    controller.evalEpression(input.value)
-//                    input.value =""
-//                }
-//            }
-//        }
-//    }
-
     override val root = vbox {
+        addClass(Styles.wrapper)
+
         hbox {
             textfield() {
-                textProperty().addListener { _, old, new ->
-                    println("=")
+                textProperty().addListener { cur, old, new ->
+                    println("=" + cur + old + new)
                 }
             }
         }
         hbox {
             button("C") {
+                style {
+                    backgroundColor += Styles.operationBgDarkColor
+                }
             }
             button("\u00B1") {
+                style {
+                    backgroundColor += Styles.operationBgDarkColor
+                }
             }
-            button("%") {
+            button("mod") {
+                style {
+                    fontSize = 28.px
+                    backgroundColor += Styles.operationBgDarkColor
+                }
             }
             button("\u00F7") {
+                style {
+                    backgroundColor += Styles.operationBgColor
+                }
             }
         }
         hbox {
@@ -50,6 +50,9 @@ class DesktopView : View() {
             button("9") {
             }
             button("\u2A09") {
+                style {
+                    backgroundColor += Styles.operationBgColor
+                }
             }
         }
         hbox {
@@ -60,6 +63,9 @@ class DesktopView : View() {
             button("6") {
             }
             button("\u2212") {// -
+                style {
+                    backgroundColor += Styles.operationBgColor
+                }
             }
         }
         hbox {
@@ -70,26 +76,26 @@ class DesktopView : View() {
             button("3") {
             }
             button("\uFF0B") {// +
+                style {
+                    backgroundColor += Styles.operationBgColor
+                }
             }
         }
         hbox {
             button("0") {
                 style {
-                    minWidth = 4.em
+                    minWidth = 168.px
                 }
             }
             button(".") {
             }
             button("=") {
+                style {
+                    backgroundColor += Styles.operationBgColor
+                }
             }
         }
 
-//        button("LOGIN") {
-//            useMaxWidth = true
-//            action {
-//                println("qqqqqq")
-//            }
-//        }
     }
 }
 
