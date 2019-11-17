@@ -2,20 +2,25 @@ package com.rogersalumni.calculator.desktop
 
 import com.rogersalumni.calculator.CalculatorApp
 import com.rogersalumni.calculator.CalculatorAppImpl
-import javafx.beans.property.SimpleStringProperty
+import javafx.scene.control.TextField
 import tornadofx.*
 
 class DesktopView : View() {
-    private val controller: DesktopController by inject()
-    private val input = SimpleStringProperty()
+    private val controller = DesktopController()
+    private var calcTextField: TextField by singleAssign()
 
     override val root = vbox {
         addClass(Styles.wrapper)
 
         hbox {
-            textfield() {
-                textProperty().addListener { cur, old, new ->
-                    println("=" + cur + old + new)
+            calcTextField = textfield("0") {
+                requestFocus()
+                textProperty().addListener { evt, _, _ ->
+                    println(evt.value)
+                }
+                style {
+                    backgroundColor += Styles.operationBgDarkColor
+                    textFill = Styles.fontColor
                 }
             }
         }
@@ -23,6 +28,9 @@ class DesktopView : View() {
             button("C") {
                 style {
                     backgroundColor += Styles.operationBgDarkColor
+                }
+                action {
+                    calcTextField.text = "0"
                 }
             }
             button("\u00B1") {
@@ -44,6 +52,9 @@ class DesktopView : View() {
         }
         hbox {
             button("7") {
+                action {
+                    println("7 pressed")
+                }
             }
             button("8") {
             }
@@ -62,7 +73,8 @@ class DesktopView : View() {
             }
             button("6") {
             }
-            button("\u2212") {// -
+            button("\u2212") {
+                // -
                 style {
                     backgroundColor += Styles.operationBgColor
                 }
@@ -75,7 +87,8 @@ class DesktopView : View() {
             }
             button("3") {
             }
-            button("\uFF0B") {// +
+            button("\uFF0B") {
+                // +
                 style {
                     backgroundColor += Styles.operationBgColor
                 }
@@ -93,6 +106,10 @@ class DesktopView : View() {
                 style {
                     backgroundColor += Styles.operationBgColor
                 }
+                action {
+                    val mockInput = "-1+2*20+1"
+                    println(mockInput + " = " + controller.evalEpression(mockInput))
+                }
             }
         }
 
@@ -102,16 +119,15 @@ class DesktopView : View() {
 class DesktopController : Controller() {
     private val calcEngine: CalculatorApp = CalculatorAppImpl()
 
-    fun evalEpression(inputValue: String) {
-        val result: Double = calcEngine.calculate(inputValue)
-        println("$inputValue = $result")
+    fun evalEpression(inputValue: String) : Double {
+        return calcEngine.calculate(inputValue)
     }
 }
 
 class DesktopApp : App(DesktopView::class, Styles::class) {
 
     companion object {
-        fun create(): DesktopApp = DesktopApp()
+//        fun create(): DesktopApp = DesktopApp()
     }
 
     init {
@@ -119,6 +135,6 @@ class DesktopApp : App(DesktopView::class, Styles::class) {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() {
     launch<DesktopApp>()
 }

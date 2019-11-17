@@ -38,7 +38,7 @@ class Styles : Stylesheet() {
         }
 
         textField {
-            fontSize = 20.px
+            fontSize = 30.px
             padding = box(6.px)
             minWidth = 336.px
             maxWidth = 336.px
