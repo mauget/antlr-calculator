@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-#-- Antlr4 path:
-CLASSPATH=/usr/local/Cellar/antlr/4.7.2/antlr-4.7.2-complete.jar
+#-- Antlr4 path (here, to Mac Homebrew tree)
+CP=/usr/local/Cellar/antlr/4.7.2/antlr-4.7.2-complete.jar
 
-#-- + Grammar path:
-export CLASSPATH="${CLASSPATH}:/Users/mauget/IdeaProjects/calculator/parser/target/classes"
-
-echo CLASSPATH: ${CLASSPATH}
+#-- Append Grammar path (here, to generated classes in Maven target)
+CP="${CP}:/Users/mauget/IdeaProjects/calculator/parser/target/classes"
 
 #-- Call TestRig with command line parameters
-java org.antlr.v4.gui.TestRig "$@"
+#-- E.g. ./gtest.sh com.rogersalumni.calculator.g4.Calculator start -gui <expression.txt
+java -cp ${CP} org.antlr.v4.gui.TestRig "$@"
