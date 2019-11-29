@@ -5,7 +5,7 @@ grammar Calculator;
 
 // parser
 
-start: expr | <EOF> ;
+start : expr | <EOF> ;
 
 expr  : '-' expr         # UMINUS
       | expr mulop expr  # MULOPGRP
