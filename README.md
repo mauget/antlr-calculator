@@ -1,2 +1,0 @@
-# calculator
-ANTLR Simple calculator
