@@ -4,7 +4,7 @@
 CP=/usr/local/Cellar/antlr/4.7.2/antlr-4.7.2-complete.jar
 #
 #-- Append Grammar path (here, to generated classes in Maven target)
-CP="${CP}:/Users/mauget/IdeaProjects/calculator/parser/target/classes"
+CP="${CP}:/Users/mauget/IdeaProjects/antlr-calculator/parser/target/classes"
 #
 #-- Call TestRig with command line parameters
 #-- E.g. ./gtest.sh com.rogersalumni.calculator.g4.Calculator start -gui <expression.txt
