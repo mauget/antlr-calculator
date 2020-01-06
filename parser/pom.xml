@@ -15,13 +15,14 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-<!--        <java.version>1.8</java.version>-->
+        <!--        <java.version>1.8</java.version>-->
         <exclude.tests>nothing.to.exclude</exclude.tests>
 
         <antlr.version>4.7.2</antlr.version>
         <antlr4test-maven-plugin.version>1.11</antlr4test-maven-plugin.version>
         <junit.version>4.12</junit.version>
         <slf4j.version>2.0.0-alpha1</slf4j.version>
+        <exec.varsion>1.6.0</exec.varsion>
     </properties>
 
     <profiles>
@@ -123,10 +124,20 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec.varsion}</version>
+            </plugin>
         </plugins>
 
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>${exec.varsion}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <defaultGoal>package</defaultGoal>
