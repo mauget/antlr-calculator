@@ -24,4 +24,8 @@ hs_err_pid*
 
 # Generated files
 parser/target/
+.DS_Store
+
+# idea IDE files
+**/.idea/*
 
