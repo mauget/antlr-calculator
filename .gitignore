@@ -25,6 +25,3 @@ hs_err_pid*
 # Generated files
 parser/target/
 
-# IDE-specific files
-parser/parser.iml
-.idea/

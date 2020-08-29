@@ -22,7 +22,8 @@ public class CalculatorAppImpl implements CalculatorApp {
 
         CalculatorAppImpl calculator = new CalculatorAppImpl();
         Double result = calculator.calculate(arg);
-        Log.info(arg + " = " + result);
+
+        Log.info(String.format("%s = %s", arg, result));
     }
 
     @Override
