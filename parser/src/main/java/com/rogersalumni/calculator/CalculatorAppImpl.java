@@ -7,22 +7,24 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CodePointCharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Drive calculator with demo input.
  */
 public class CalculatorAppImpl implements CalculatorApp {
 
-    private static final Logger Log = LogManager.getLogger(CalculatorAppImpl.class);
+    private static final Logger Log = LoggerFactory.getLogger(CalculatorAppImpl.class);
 
     public static void main(String[] args) {
         String arg = args.length > 0 ? args[0] : "-1 / 2";
 
         CalculatorAppImpl calculator = new CalculatorAppImpl();
         Double result = calculator.calculate(arg);
-        Log.info(arg + " = " + result);
+
+        Log.info(String.format("%s = %s", arg, result));
     }
 
     @Override
